@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guia do Comprador — seu primeiro imóvel no litoral, passo a passo</title>
+<meta name="description" content="Guia interativo em 7 passos para comprar imóvel no litoral paulista com segurança. Satélite da rede praia.digital">
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#f0fdfa;color:#134e4a;min-height:100vh}
+header{padding:24px;text-align:center;background:linear-gradient(120deg,#0f766e,#14b8a6);color:#fff}
+nav a{color:#fef08a;margin:0 8px;text-decoration:none;font-size:14px}
+.wrap{max-width:680px;margin:auto;padding:24px}
+.step{background:#fff;border-radius:16px;padding:24px;box-shadow:0 8px 24px rgba(15,118,110,.1);min-height:200px}
+.step h2{color:#0f766e}
+.dots{display:flex;justify-content:center;gap:8px;margin:18px 0}
+.dots span{width:12px;height:12px;border-radius:50%;background:#99f6e4;cursor:pointer}
+.dots span.on{background:#0f766e;transform:scale(1.3)}
+.navb{display:flex;justify-content:space-between;margin-top:18px}
+.navb button{background:#0f766e;color:#fff;border:none;border-radius:99px;padding:12px 26px;font-size:16px;cursor:pointer}
+.navb button:disabled{opacity:.3}
+.tip{background:#ccfbf1;border-radius:10px;padding:12px;margin-top:14px;font-size:14px}
+footer{padding:20px;text-align:center;font-size:13px}
+footer a{color:#0f766e}
+</style></head>
+<body>
+<header><h1>🏖️ Guia do Comprador</h1><p>7 passos para o seu imóvel no litoral — sem dor de cabeça</p>
+<nav><a href="https://praia.digital">Praia Digital</a><a href="https://praia.digital/checklists-litoral">Checklists</a><a href="https://praia.digital/plano-litoral">Plano Litoral</a><a href="https://praia.digital/apps">Todos os apps</a></nav></header>
+<div class="wrap">
+<div class="step" id="step"></div>
+<div class="dots" id="dots"></div>
+<div class="navb"><button id="prev" onclick="go(-1)">← Anterior</button><button id="next" onclick="go(1)">Próximo →</button></div>
+</div>
+<footer>Rede <a href="https://praia.digital">praia.digital</a> · <a href="https://praia.digital/simulador-credito">Simulador de Crédito</a> · <a href="https://praia.digital/calculadora-custos">Calc. Custos</a> · <a href="https://praia.digital/mapa-inteligente">Mapa Inteligente</a></footer>
+<script>
+const passos=[
+['💰 Passo 1 — Organize as finanças','Defina quanto pode investir no total: imóvel + 6% de custos (ITBI, cartório, corretagem) + reserva de emergência.','Monte seu plano de entrada no app Plano Litoral: praia.digital/plano-litoral'],
+['🏦 Passo 2 — Crédito aprovado','Compare SBPE, FGTS e Minha Casa Minha Vida. Uma pré-aprovação fortalece sua negociação.','Simule parcelas reais: praia.digital/simulador-credito'],
+['📍 Passo 3 — Escolha a cidade e o bairro','Cada cidade do litoral tem perfil diferente: investimento, uso próprio ou os dois.','Veja preço/m² e valorização por bairro: praia.digital/radar-precos'],
+['🔍 Passo 4 — Visite com olhar crítico','Vá em dia de chuva e na alta temporada. Teste ventilação, sol da manhã, vaga e maresia.','Use o checklist de visita: praia.digital/checklists-litoral'],
+['📄 Passo 5 — Due diligence','Matrícula, certidões do vendedor, IPTU, condomínio e dívidas ocultas. Não pule esta etapa!','Calcule todos os custos de fechamento: praia.digital/calculadora-custos'],
+['🤝 Passo 6 — Proposta e contrato','Proposta por escrito, sinal em conta e contrato revisado por advogado ou despachante.','Encontre o imóvel certo no Match Praia: praia.digital/match-praia'],
+['🔑 Passo 7 — Escritura e chaves','Pague o ITBI, registre em cartório, transfira as contas e... bem-vindo ao litoral! 🎉','Pense em monetizar com temporada: praia.digital/calculadora-temporada']];
+let i=0;
+function render(){step.innerHTML=`<h2>${passos[i][0]}</h2><p>${passos[i][1]}</p><div class="tip">💡 ${passos[i][2]}</div>`;
+dots.innerHTML=passos.map((_,j)=>`<span class="${j===i?'on':''}" onclick="i=${j};render()"></span>`).join('');
+prev.disabled=i===0;next.disabled=i===passos.length-1;next.textContent=i===passos.length-1?'✅ Concluído':'Próximo →';}
+function go(d){i=Math.max(0,Math.min(passos.length-1,i+d));render();}
+render();
+</script></body></html>
